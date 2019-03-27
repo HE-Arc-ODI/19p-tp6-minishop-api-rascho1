@@ -4,6 +4,7 @@
 
 package ch.hearc.ig.odi.minishop.business;
 
+import ch.hearc.ig.odi.minishop.business.Product.Productstatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -33,6 +34,13 @@ public class Customer implements Serializable {
   private String phone;
   private Set<Cart> carts;
   private List<Order> orders;
+  private String costumerstatus = Customerstatus.ACTIVE.toString();
+
+  public enum Customerstatus {ACTIVE("active"),INACTIVE("inaactive");
+    private String customerstatusname;
+    Customerstatus(String customerstatusname) {this.customerstatusname = customerstatusname; }
+    public String toString() { return super.toString().toLowerCase();}
+  }
 
 
   public Customer() {
