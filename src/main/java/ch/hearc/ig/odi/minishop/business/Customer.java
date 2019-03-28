@@ -4,8 +4,8 @@
 
 package ch.hearc.ig.odi.minishop.business;
 
-import ch.hearc.ig.odi.minishop.business.Product.Productstatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -34,7 +34,8 @@ public class Customer implements Serializable {
   private String phone;
   private Set<Cart> carts;
   private List<Order> orders;
-  private String costumerstatus = Customerstatus.ACTIVE.toString();
+  @JsonProperty("status")
+  private String customerstatus = Customerstatus.ACTIVE.toString();
 
   public enum Customerstatus {ACTIVE("active"),INACTIVE("inaactive");
     private String customerstatusname;
@@ -56,12 +57,14 @@ public class Customer implements Serializable {
     this.lastName = lastName;
     this.email = email;
     this.phone = phone;
+    this.customerstatus = Customerstatus.ACTIVE.toString();
   }
 
   public Customer(Long customerId, String username, String firstName, String lastName, String email,
       String phone) {
     this(username, firstName, lastName, email, phone);
     this.customerId = customerId;
+    this.customerstatus = Customerstatus.ACTIVE.toString();
 
   }
 
