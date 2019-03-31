@@ -6,10 +6,12 @@ package ch.hearc.ig.odi.minishop.restresources;
 
 import ch.hearc.ig.odi.minishop.business.Customer;
 import ch.hearc.ig.odi.minishop.exception.CustomerException;
+import ch.hearc.ig.odi.minishop.exception.NullFormException;
 import ch.hearc.ig.odi.minishop.services.PersistenceService;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -47,6 +49,18 @@ public class CustomerResource {
     @FormParam("phone") String phone){
    return persistenceService.createAndPersistCustomer(unserName,firstName,lastName,email,phone);
   }
+  @DELETE
+  @Path("{id}")
+  @Consumes(MediaType.APPLICATION_JSON)
+  public void deletetCustomer(@PathParam("id") Long id) {
+    try {
+      persistenceService.deleteCustomer(id);
+    } catch (CustomerException e) {
+      e.printStackTrace();
+      throw new NullFormException("customer not deleted.");
+    }
+  }
+
 
 
 }
