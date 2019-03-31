@@ -41,15 +41,17 @@ public class CustomerResource {
   }
 
   @POST
-  @Consumes (MediaType.APPLICATION_FORM_URLENCODED)
+  @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   public Customer createCustomer(
-    @FormParam("unsername") String unserName,
-    @FormParam("firstname") String firstName,
-    @FormParam("lastname") String lastName,
-     @FormParam("email") String email,
-    @FormParam("phone") String phone){
-   return persistenceService.createAndPersistCustomer(unserName,firstName,lastName,email,phone);
+      @FormParam("unsername") String unserName,
+      @FormParam("firstname") String firstName,
+      @FormParam("lastname") String lastName,
+      @FormParam("email") String email,
+      @FormParam("phone") String phone) {
+    return persistenceService
+        .createAndPersistCustomer(unserName, firstName, lastName, email, phone);
   }
+
   @DELETE
   @Path("{id}")
   @Consumes(MediaType.APPLICATION_JSON)
@@ -73,7 +75,6 @@ public class CustomerResource {
       throw new NullFormException("product couldn't have been updated.");
     }
   }
-
 
 
 }
