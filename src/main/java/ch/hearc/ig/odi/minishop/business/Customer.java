@@ -37,7 +37,7 @@ public class Customer implements Serializable {
   @JsonProperty("status")
   private String customerstatus = Customerstatus.ACTIVE.toString();
 
-  public enum Customerstatus {ACTIVE("active"),INACTIVE("inaactive");
+  public enum Customerstatus {ACTIVE("active"),INACTIVE("inactive");
     private String customerstatusname;
     Customerstatus(String customerstatusname) {this.customerstatusname = customerstatusname; }
     public String toString() { return super.toString().toLowerCase();}

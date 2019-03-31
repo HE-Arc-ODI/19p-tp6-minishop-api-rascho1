@@ -19,12 +19,10 @@ import javax.ws.rs.core.MediaType;
 @Path("customer")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-
 public class CustomerResource {
 
   @Inject
   private PersistenceService persistenceService;
-
 
   @GET
   public List<Customer> getCustomer() {
@@ -36,6 +34,7 @@ public class CustomerResource {
   public Customer getProduct(@PathParam("id") Long customerId) throws CustomerException {
     return persistenceService.getCustomerByID(customerId);
   }
+
 
 }
 

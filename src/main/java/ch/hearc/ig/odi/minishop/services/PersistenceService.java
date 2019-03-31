@@ -64,12 +64,16 @@ public class PersistenceService {
    *
    * @return a list
    */
-  public ArrayList<Customer> getAllCustomers() {
+ /* public ArrayList<Customer> getAllCustomers() {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     List<Customer> customers = entityManager.createQuery("from Customer", Customer.class)
         .getResultList();
     return (ArrayList<Customer>) customers;
+  }*/
+  public List<Customer> getAllCustomers() {
+    ArrayList<Customer> customers = new ArrayList<>(this.customers.values());
+    return customers;
   }
 
 
