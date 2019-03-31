@@ -64,12 +64,16 @@ public class PersistenceService {
    *
    * @return a list
    */
-  public ArrayList<Customer> getAllCustomers() {
+ /* public ArrayList<Customer> getAllCustomers() {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     List<Customer> customers = entityManager.createQuery("from Customer", Customer.class)
         .getResultList();
     return (ArrayList<Customer>) customers;
+  }*/
+  public List<Customer> getAllCustomers() {
+    ArrayList<Customer> customers = new ArrayList<>(this.customers.values());
+    return customers;
   }
 
 
@@ -97,7 +101,7 @@ public class PersistenceService {
    * @param customerid : specifies which customer to return
    * @return an objet customer
    */
-  public Customer getCustomerByID(Long customerid) throws CustomerException {
+ /* public Customer getCustomerByID(Long customerid) throws CustomerException {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     Customer actualCustomer = entityManager.find(Customer.class, customerid);
     if (actualCustomer != null) {
@@ -105,8 +109,15 @@ public class PersistenceService {
     } else {
       throw new CustomerException("Customer with id " + customerid + " not found");
     }
+  }*/
+  public Customer getCustomerByID(Long customerid) throws CustomerException {
+    Customer searchCustomer = this.customers.get(customerid);
+    if (searchCustomer != null) {
+      return searchCustomer;
+    } else {
+      throw new CustomerException("Customer with id " + customerid + " not found");
+    }
   }
-
 
   /**
    * Delete a customer
