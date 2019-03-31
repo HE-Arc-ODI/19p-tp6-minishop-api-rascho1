@@ -10,7 +10,9 @@ import ch.hearc.ig.odi.minishop.services.PersistenceService;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -33,6 +35,17 @@ public class CustomerResource {
   @Path("{id}")
   public Customer getProduct(@PathParam("id") Long customerId) throws CustomerException {
     return persistenceService.getCustomerByID(customerId);
+  }
+
+  @POST
+  @Consumes (MediaType.APPLICATION_FORM_URLENCODED)
+  public void createCustomer(
+    @FormParam("unsername") String unserName,
+    @FormParam("firstname") String firstName,
+    @FormParam("lastname") String lastName,
+     @FormParam("email") String email,
+    @FormParam("phone") String phone){
+    persistenceService.createAndPersistCustomer(unserName,firstName,lastName,email,phone);
   }
 
 
