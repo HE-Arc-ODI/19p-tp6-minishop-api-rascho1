@@ -39,13 +39,13 @@ public class CustomerResource {
 
   @POST
   @Consumes (MediaType.APPLICATION_FORM_URLENCODED)
-  public void createCustomer(
+  public Customer createCustomer(
     @FormParam("unsername") String unserName,
     @FormParam("firstname") String firstName,
     @FormParam("lastname") String lastName,
      @FormParam("email") String email,
     @FormParam("phone") String phone){
-    persistenceService.createAndPersistCustomer(unserName,firstName,lastName,email,phone);
+   return persistenceService.createAndPersistCustomer(unserName,firstName,lastName,email,phone);
   }
 
 
