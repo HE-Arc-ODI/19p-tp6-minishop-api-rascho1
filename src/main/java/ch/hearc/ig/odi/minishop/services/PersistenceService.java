@@ -101,7 +101,7 @@ public class PersistenceService {
    * @param customerid : specifies which customer to return
    * @return an objet customer
    */
-  public Customer getCustomerByID(Long customerid) throws CustomerException {
+ /* public Customer getCustomerByID(Long customerid) throws CustomerException {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     Customer actualCustomer = entityManager.find(Customer.class, customerid);
     if (actualCustomer != null) {
@@ -109,8 +109,15 @@ public class PersistenceService {
     } else {
       throw new CustomerException("Customer with id " + customerid + " not found");
     }
+  }*/
+  public Customer getCustomerByID(Long customerid) throws CustomerException {
+    Customer searchCustomer = this.customers.get(customerid);
+    if (searchCustomer != null) {
+      return searchCustomer;
+    } else {
+      throw new CustomerException("Customer with id " + customerid + " not found");
+    }
   }
-
 
   /**
    * Delete a customer
